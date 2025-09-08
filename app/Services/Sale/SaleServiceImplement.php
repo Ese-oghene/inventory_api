@@ -50,6 +50,7 @@ class SaleServiceImplement extends ServiceApi implements SaleService{
                 'cashier_id' => auth()->id(),
                 'sale_date' => now(),
                 'total_amount' => 0,
+                'payment_method' => $data['payment_method'] ?? 'cash', // ✅ store method
             ]);
 
             $totalAmount = 0;

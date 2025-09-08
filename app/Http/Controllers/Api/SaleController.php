@@ -25,10 +25,10 @@ class SaleController extends Controller
             'items' => 'required|array|min:1',
             'items.*.sku' => 'required|string|exists:products,sku',
             'items.*.quantity' => 'required|integer|min:1',
+            'payment_method' => 'required|string|in:cash,transfer,card', // ✅ validate
         ]);
 
         return $this->saleService->recordSale($validated)->toJson();
-         // return $result->getResponse(); // ✅ important
     }
 
      /**
@@ -66,10 +66,5 @@ class SaleController extends Controller
     {
         return $this->saleService->getReceiptByDate($date);
     }
-
-
-
-
-
 
 }

@@ -20,6 +20,7 @@ class SaleResource extends JsonResource
             'sale_date' => $this->sale_date,
             'total_amount' => $this->total_amount,
             'items' => SaleItemResource::collection($this->saleItems),
+            'payment_method' => $this->payment_method
         ];
     }
 }
