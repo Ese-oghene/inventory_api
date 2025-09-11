@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\SaleController;
 use App\Http\Controllers\Api\ReportController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\CashierDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,7 +52,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/sales/{id}', [SaleController::class, 'show']);              // single sale
     Route::get('/sales/date/{date}', [SaleController::class, 'salesByDate']); // sales by date (paginated)
     Route::get('/sales/receipts/{date}', [SaleController::class, 'receiptsByDate']); // all sales for a date
+    Route::get('/cashier/dashboard-stats', [CashierDashboardController::class, 'index']);
 });
+
+
+//Route::middleware('auth:sanctum')->get('/cashier/dashboard-stats', [CashierDashboardController::class, 'index']);
 
 // CEO Reports
 Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {

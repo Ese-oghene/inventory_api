@@ -52,6 +52,7 @@ class SaleController extends Controller
 
     /**
      * Get sales for a specific date (paginated)
+     * 
      */
     public function salesByDate(Request $request, string $date)
     {
