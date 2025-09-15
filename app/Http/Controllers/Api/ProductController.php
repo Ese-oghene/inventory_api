@@ -80,4 +80,10 @@ class ProductController extends Controller
     return $this->productService->updateStock($id, $quantity)->toJson();
 }
 
+// add this to the code on the server
+public function search(string $term)
+{
+    return $this->productService->searchProducts($term)->toJson();
+}
+
 }

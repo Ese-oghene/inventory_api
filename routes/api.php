@@ -69,5 +69,17 @@ Route::get('/categories', [CategoryController::class, 'index']);
 Route::post('/categories', [CategoryController::class, 'store'])->middleware('auth:sanctum');
 
 
+// search products by name or SKU add this to the code on the server
+Route::get('/products/search/{term}', [ProductController::class, 'search']);
 
 
+// Admin user management add this too to the server
+// Admin user management
+Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
+    Route::get('/users', [AuthController::class, 'index']);       // list cashiers
+    Route::post('/users', [AuthController::class, 'store']);      // create cashier
+    Route::put('/users/{id}', [AuthController::class, 'update']); // update cashier
+    Route::delete('/users/{id}', [AuthController::class, 'destroy']); // delete cashier
+    Route::get('/profile', [AuthController::class, 'profile']);   // view own profile
+    Route::put('/profile', [AuthController::class, 'updateProfile']); // edit own profile
+});

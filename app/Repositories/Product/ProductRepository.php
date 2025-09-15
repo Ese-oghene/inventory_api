@@ -18,4 +18,7 @@ interface ProductRepository extends Repository{
 
     // ✅ You might also want deleteProduct for consistency
     public function deleteProduct(int $id): bool;
+
+    // ✅ add this to the code on th server And the searchByTerm method
+    public function searchByTerm(string $term);
 }

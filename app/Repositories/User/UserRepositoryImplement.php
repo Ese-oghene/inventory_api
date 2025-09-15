@@ -30,7 +30,30 @@ class UserRepositoryImplement extends Eloquent implements UserRepository{
         return $this->model->where('email', $email)->first();
     }
 
-   
+
+    //add this to the code on the server
+     public function findUserById($id)
+    {
+        return $this->model->find($id);
+    }
+
+    public function updateUser($id, array $data)
+    {
+        $user = $this->model->findOrFail($id);
+        $user->update($data);
+        return $user;
+    }
+
+    public function deleteUser($id)
+    {
+        $user = $this->model->findOrFail($id);
+        return $user->delete();
+    }
+
+    public function getUsersByRole($role)
+    {
+        return $this->model->where('role', $role)->get();
+    }
 
     // Write something awesome :)
 }

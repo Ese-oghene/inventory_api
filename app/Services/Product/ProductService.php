@@ -16,4 +16,6 @@ interface ProductService extends BaseService{
     // 🔹 Add these missing ones
     public function updateProduct(int $id, array $data);
     public function deleteProduct(int $id);
+
+    public function searchProducts(string $term);
 }

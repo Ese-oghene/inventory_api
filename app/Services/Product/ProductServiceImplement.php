@@ -161,6 +161,16 @@ class ProductServiceImplement extends ServiceApi implements ProductService{
     }
 
 
+    public function searchProducts(string $term)
+{
+    $products = $this->productRepository->searchByTerm($term);
+
+    return $this->setCode(200)
+                ->setMessage("Search results")
+                ->setData(ProductResource::collection($products));
+}
+
+
 
 
 }

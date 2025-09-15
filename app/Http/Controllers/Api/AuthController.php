@@ -58,4 +58,44 @@ class AuthController extends Controller
     {
         return $this->authService->adminLogout($request)->toJson();
     }
+
+
+    // ==========================
+    // 👤 Admin Profile
+    // ==========================
+    public function profile(Request $request): JsonResponse
+    {
+        return $this->authService->profile($request)->toJson();
+    }
+
+    public function updateProfile(Request $request): JsonResponse
+    {
+        return $this->authService->updateProfile($request)->toJson();
+    }
+
+    // ==========================
+    // 👥 User Management (Cashiers)
+    // ==========================
+    public function index(): JsonResponse
+    {
+        return $this->authService->listCashiers()->toJson();
+    }
+
+    public function store(Request $request): JsonResponse
+    {
+        return $this->authService->createCashier($request)->toJson();
+    }
+
+    public function update(Request $request, $id): JsonResponse
+    {
+        return $this->authService->updateCashier($request, $id)->toJson();
+    }
+
+    public function destroy($id): JsonResponse
+    {
+        return $this->authService->deleteCashier($id)->toJson();
+    }
+
+
+
 }

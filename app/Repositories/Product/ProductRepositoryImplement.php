@@ -84,4 +84,16 @@ public function deleteProduct(int $id): bool
 }
 
 
+
+//add this to the code on the server
+public function searchByTerm(string $term)
+{
+    return $this->model
+        ->where('sku', 'LIKE', "{$term}%")   // match SKUs starting with term
+        ->orWhere('name', 'LIKE', "{$term}%") // also allow product names
+        ->limit(10) // suggestions only
+        ->get();
+}
+
+
 }
