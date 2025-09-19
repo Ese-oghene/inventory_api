@@ -37,7 +37,8 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('/products', [ProductController::class, 'store']); // Admin only
     Route::get('/products', [ProductController::class, 'index']); // Admin sees all, cashier sees stock
-    Route::get('/products/{sku}', [ProductController::class, 'show']); // Search by SKU
+     Route::get('/products/{id}', [ProductController::class, 'showById']);
+    //Route::get('/products/{sku}', [ProductController::class, 'show']); // Search by SKU
     Route::put('/products/{id}', [ProductController::class, 'update']); // Admin only
     Route::patch('/products/{id}', [ProductController::class, 'update']); // Admin only
     Route::delete('/products/{id}', [ProductController::class, 'destroy']); // Admin only

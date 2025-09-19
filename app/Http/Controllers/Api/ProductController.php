@@ -59,10 +59,10 @@ class ProductController extends Controller
 }
 
 
-    // ✅ Delete product
-    public function destroy(int $id)
+    // ✅ Delete product add this to the code on the server
+        public function destroy(int $id)
     {
-        return $this->productService->deleteProduct($id);
+        return $this->productService->deleteProduct($id)->toJson();
     }
 
 
@@ -85,5 +85,25 @@ public function search(string $term)
 {
     return $this->productService->searchProducts($term)->toJson();
 }
+
+/// add is to the server
+public function showById($id)
+{
+    $product = \App\Models\Product::find($id);
+
+    if (!$product) {
+        return response()->json([
+            'code' => 404,
+            'message' => 'Product not found'
+        ], 404);
+    }
+
+    return response()->json([
+        'code' => 200,
+        'message' => 'Product found',
+        'data' => new ProductResource($product)
+    ], 200);
+}
+
 
 }
