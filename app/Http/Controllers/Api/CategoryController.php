@@ -37,20 +37,4 @@ class CategoryController extends Controller
     ], 201);
 }
 
-    // Store new category
-    // public function store(Request $request)
-    // {
-    //     $request->validate([
-    //         'name' => 'required|string|max:255|unique:categories,name',
-    //     ]);
-
-    //     $category = Category::create([
-    //         'name' => $request->name,
-    //     ]);
-
-    //     return response()->json([
-    //         'message' => '✅ Category created successfully',
-    //         'data' => $category,
-    //     ], 201);
-    // }
 }

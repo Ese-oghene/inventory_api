@@ -45,22 +45,6 @@ class ProductRepositoryImplement extends Eloquent implements ProductRepository{
         return $product;
     }
 
-// public function updateProduct(int $id, array $data): ?Product
-// {
-
-//     $product = $this->model->find($id);
-
-//     if (!$product) {
-//         return null;
-//     }
-
-//     log::info("Repository update data", $data);
-//     $product->update($data);
-//      Log::info("DB product after update", $product->toArray());
-//     //Log::info("Changed attributes", $product->getChanges());
-//     return $product->fresh();
-// }
-
 
     /**
      * Update a product by ID.

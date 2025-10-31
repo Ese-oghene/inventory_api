@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Services\Product;
+use Illuminate\Support\Str;
 
 use LaravelEasyRepository\ServiceApi;
 use App\Repositories\Product\ProductRepository;
@@ -58,6 +59,20 @@ class ProductServiceImplement extends ServiceApi implements ProductService{
 
                  $data['category_id'] = $category->id;
 
+                // ✅ Auto-generate SKU (product initials + random digits)
+                $initials = strtoupper(Str::substr($data['name'], 0, 3));
+                $random   = rand(1000, 9999);
+                $sku      = $initials . $random;
+
+                // Ensure unique SKU
+                while (Product::where('sku', $sku)->exists()) {
+                    $random = rand(1000, 9999);
+                    $sku = $initials . $random;
+                }
+
+                $data['sku'] = $sku;
+
+
                 // Handle image upload if exists
                 if(isset($data['image'])){
                     $imagePath = $data['image']->store('products', 'public');
@@ -71,10 +86,17 @@ class ProductServiceImplement extends ServiceApi implements ProductService{
                             ->setMessage("Product created successfully")
                             ->setData(new ProductResource($product));
 
-            } catch (\Exception $e) {
-                return $this->setCode(400)
-                            ->setMessage("Failed to create product")
-                            ->setError($e->getMessage());
+            // } catch (\Exception $e) {
+            //     return $this->setCode(400)
+            //                 ->setMessage("Failed to create product")
+            //                 ->setError($e->getMessage());
+            // }
+
+                } catch (\Exception $e) {
+                return response()->json([
+                    'message' => 'Failed to create product',
+                    'error'   => $e->getMessage(),
+                ], 400);
             }
         }
 

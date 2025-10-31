@@ -37,26 +37,19 @@ class ProductController extends Controller
         return $this->productService->getAllProducts()->toJson();
     }
 
-    // ✅ Update product
-    // public function update(ProductUpdateRequest  $request, int $id)
-    // {
-    //     return $this->productService->updateProduct($id, $request->validated())->toJson();
-    // }
 
-    public function update(ProductUpdateRequest $request, int $id)
-{
-    // Log::info("Raw request all()", $request->all());
-    // Log::info("Request input()", $request->input());
-    $data = $request->validated();
+            public function update(ProductUpdateRequest $request, int $id)
+        {
+            $data = $request->validated();
 
-    Log::info("Validated request data", $data);
-    // merge the file back into the payload
-    if ($request->hasFile('image')) {
-        $data['image'] = $request->file('image');
-    }
+            Log::info("Validated request data", $data);
+            // merge the file back into the payload
+            if ($request->hasFile('image')) {
+                $data['image'] = $request->file('image');
+            }
 
-    return $this->productService->updateProduct($id, $data)->toJson();
-}
+            return $this->productService->updateProduct($id, $data)->toJson();
+        }
 
 
     // ✅ Delete product add this to the code on the server

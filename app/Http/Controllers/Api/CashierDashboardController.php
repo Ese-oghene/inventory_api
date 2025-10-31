@@ -11,8 +11,6 @@ use Carbon\Carbon;
 class CashierDashboardController extends Controller
 {
 
-
-
 public function index()
    {
        // ✅ Total quantity of products sold today

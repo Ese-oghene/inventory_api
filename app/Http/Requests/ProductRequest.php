@@ -27,7 +27,8 @@ class ProductRequest extends FormRequest
        return [
             'category_id' => 'nullable|integer',
             'name' => 'required|string|max:255',
-            'sku' => 'required|string|unique:products,sku',
+            // 'sku' => 'required|string|unique:products,sku',
+            'sku' => 'nullable|string|unique:products,sku', // 👈 not required anymore
             'description' => 'nullable|string',
             'price' => 'required|numeric',
             'stock_qty' => 'required|integer|min:0',

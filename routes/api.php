@@ -57,7 +57,6 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 
-//Route::middleware('auth:sanctum')->get('/cashier/dashboard-stats', [CashierDashboardController::class, 'index']);
 
 // CEO Reports
 Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
