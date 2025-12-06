@@ -28,7 +28,7 @@ class ProductRequest extends FormRequest
             'category_id' => 'nullable|integer',
             'name' => 'required|string|max:255',
             // 'sku' => 'required|string|unique:products,sku',
-            'sku' => 'nullable|string|unique:products,sku', // 👈 not required anymore
+
             'description' => 'nullable|string',
             'price' => 'required|numeric',
             'stock_qty' => 'required|integer|min:0',
@@ -42,7 +42,7 @@ class ProductRequest extends FormRequest
     {
         return [
             'category_id.required' => 'Category is required',
-            'sku.unique' => 'SKU must be unique',
+            // 'sku.unique' => 'SKU must be unique',
             'price.required' => 'Price is required',
             'stock_qty.required' => 'Stock quantity is required',
         ];
