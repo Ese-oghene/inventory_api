@@ -80,4 +80,12 @@ class ProductController extends Controller
     return $this->productService->updateStock($id, $quantity)->toJson();
 }
 
+public function search(string $term){
+    return $this->productService->searchProducts($term)->tojson();
+}
+
+// public function showById($id){
+//     $product = /App
+// }
+
 }
